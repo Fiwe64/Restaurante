@@ -1,8 +1,8 @@
 package com.Reserva.Restaurante.repository;
 
-import com.Reserva.Restaurante.domain.mesas.Mesas;
+import com.Reserva.Restaurante.domain.mesa.Mesa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MesaRepository extends JpaRepository<Mesas, Long> {
+public interface MesaRepository extends JpaRepository<Mesa, Long> {
 
 }
