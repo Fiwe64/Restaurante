@@ -1,6 +1,9 @@
 package com.Reserva.Restaurante.domain.cliente;
 
-public record DadosCadastroCliente(
+import jakarta.validation.constraints.Email;
 
+public record DadosCadastroCliente(
+        @Email
+        String email
 ) {
 }
