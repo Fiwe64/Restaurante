@@ -1,8 +1,8 @@
 package com.Reserva.Restaurante.service;
 
 
+import com.Reserva.Restaurante.domain.mesa.Mesa;
 import com.Reserva.Restaurante.exception.ResourceNotFoundException;
-import com.Reserva.Restaurante.model.Mesa;
 import com.Reserva.Restaurante.repository.MesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
