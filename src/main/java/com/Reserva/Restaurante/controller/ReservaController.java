@@ -1,4 +1,3 @@
-import com.Reserva.Restaurante.domain.cliente.Cliente;
 import com.Reserva.Restaurante.domain.reserva.Reserva;
 import com.Reserva.Restaurante.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservaController {
@@ -16,13 +14,10 @@ public class ReservaController {
     private ReservaService reservaService;
 
     // Criar uma nova reserva associada a um cliente e uma mesa
-    @PostMapping("/cliente/mesa/{id}")
-    public ResponseEntity<Reserva> reservarMesa(
-            @PathVariable Long id,
-            @RequestBody Cliente clienteDetails,
-            @RequestBody Reserva reservaDetails) {
-
-        Reserva reserva = reservaService.criarReserva(id, clienteDetails, reservaDetails);
+    @PostMapping
+    public ResponseEntity<Reserva> reservarMesa(@RequestBody Reserva reservaDetails) {
+        System.out.println("Reservar mesa: " + reservaDetails);
+        Reserva reserva = reservaService.criarReserva(reservaDetails);
         return new ResponseEntity<>(reserva, HttpStatus.CREATED);
     }
 

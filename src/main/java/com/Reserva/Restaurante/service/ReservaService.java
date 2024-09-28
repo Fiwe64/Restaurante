@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class ReservaService {
 
@@ -25,19 +24,13 @@ public class ReservaService {
     private MesaRepository mesaRepository;
 
     // Criar uma nova reserva
-    public Reserva criarReserva(Long id, Cliente clienteDetails, Reserva reservaDetails) {
-        // Buscar ou criar o cliente com base no email
-        Cliente cliente = clienteRepository.findById(clienteDetails.getId())
-                .orElseGet(() -> {
-                    Cliente novoCliente = new Cliente();
-                    novoCliente.setNome(clienteDetails.getNome());
-                    novoCliente.setTelefone(clienteDetails.getTelefone());
-                    novoCliente.setEmail(clienteDetails.getEmail());
-                    return clienteRepository.save(novoCliente);
-                });
+    public Reserva criarReserva(Reserva reservaDetails) {
+        // Buscar o cliente pelo ID
+        Cliente cliente = clienteRepository.findById(reservaDetails.getCliente().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
 
         // Buscar a mesa pelo ID
-        Mesa mesa = mesaRepository.findById(id)
+        Mesa mesa = mesaRepository.findById(reservaDetails.getMesa().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Mesa não encontrada"));
 
         // Configurar a reserva com o cliente e a mesa
@@ -59,4 +52,5 @@ public class ReservaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Reserva não encontrada"));
     }
 }
+
 
